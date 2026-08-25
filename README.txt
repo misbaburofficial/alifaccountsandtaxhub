@@ -26,3 +26,4 @@ FINAL SERVICES PAGE UPDATE
 - Services page visual layout updated to match the supplied reference: large logo beside the "Services We Provide" heading, with service cards arranged around the header in a four-column layout.
 - Existing service content, expansion behavior, navigation, WhatsApp actions, home page, contact page, privacy policy, and other settings are preserved.
 - Added the supplied ALIF logo as logo.png for the Services page header.
+Cloudflare automatic deployment connected.
