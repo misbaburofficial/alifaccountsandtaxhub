@@ -1,0 +1,1134 @@
+/* PREMIUM CARD UPGRADE */
+.services-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+ gap: 20px;
+ padding: 20px 0;
+}
+.service {
+ background: #121824; 
+ border: 1px solid #1e293b;
+ border-radius: 8px;	
+ padding: 24px 20px;
+ cursor: pointer;
+ position: relative;
+ overflow: hidden;
+ display: flex;
+ flex-direction: column;
+ gap: 12px;
+ transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.service::before {
+ content: '';
+ position: absolute;
+ top: 0; left: 0; width: 4px; height: 100%;
+ background: #6366f1; /* Vibrant tech-indigo accent line */
+ transition: background 0.2s ease;
+}
+.service:hover {
+ border-color: #25D366; 
+ transform: translateY(-3px);
+ box-shadow: 0 10px 25px rgba(37, 211, 102, 0.1);
+}
+.service:hover::before {
+ background: #25D366; /* Accent shifts to green on hover */
+}
+.service:focus-visible {
+ outline: 2px solid #25D366;
+ outline-offset: 4px;
+}
+.service svg.card-icon {
+ width: 32px;
+ height: 32px;
+ fill: #94a3b8; /* Balanced slate-gray icon color */
+ transition: transform 0.3s ease, fill 0.3s ease;
+}
+.service:hover svg.card-icon {
+ fill: #25D366; /* Highlighting icon color on hover */
+ transform: scale(1.08);
+}
+
+.service-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; 
+}
+
+.service-details ul {
+    margin: 15px 0;
+    padding-left: 20px;
+    list-style-type: "✔ "; 
+    color: #cbd5e1;
+}
+
+.service-details li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.legal-note {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #94a3b8;
+    margin: 10px 0;
+}
+
+.whatsapp-btn {
+    display: inline-block;
+    background-color: #25D366;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;color:#fff;background:#0b0f14}
+
+/* HERO */
+.hero{
+min-height:100vh;
+position:relative;
+background:
+linear-gradient(to right,rgba(5,8,20,.85),rgba(5,8,20,.4)),
+url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c') center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:60px;
+flex-wrap:wrap;
+}
+
+.hero-content{max-width:600px;}
+
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:52px;
+line-height:1.1;
+}
+
+.hero p{
+margin-top:15px;
+font-size:17px;
+color:#d1d5db;
+}
+
+.hero-btn{
+margin-top:25px;
+display:inline-block;
+padding:12px 28px;
+border-radius:30px;
+background:#6366f1;
+color:#fff;
+text-decoration:none;
+font-weight:500;
+margin-right:10px;
+}
+
+.hero-btn:hover{background:#4f46e5}
+
+/* FORM CARD */
+.form-card{
+background:#fff;
+color:#111;
+padding:30px;
+width:340px;
+border-radius:16px;
+box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+
+.form-card h3{
+margin-bottom:15px;
+font-size:18px;
+text-align:center;
+}
+
+.form-card input{
+width:100%;
+padding:10px;
+margin-bottom:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.form-card button{
+width:100%;
+padding:10px;
+border:none;
+border-radius:30px;
+background:#6366f1;
+color:#fff;
+cursor:pointer;
+}
+
+.form-card button:hover{background:#4f46e5}
+
+/* SECTIONS */
+section{padding:80px 60px;}
+h2{
+font-family:'Playfair Display',serif;
+font-size:36px;
+margin-bottom:30px;
+}
+/* Unified transition rule inherited from higher block styles */
+.service.active .service-details{
+margin-top:10px;
+}
+
+.service.active .service-details{
+margin-top:10px;
+}
+
+/* PREMIUM CONTACT SECTION */
+#contact{
+background:linear-gradient(145deg,#0f172a,#0b0f14);
+}
+
+.contact-wrapper{
+display:flex;
+gap:25px;
+justify-content:center;
+align-items:stretch;
+flex-wrap:nowrap;
+margin-top:30px;
+}
+
+.contact-item{
+background:rgba(17,24,39,0.85);
+backdrop-filter:blur(8px);
+padding:25px;
+border-radius:18px;
+flex:1;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+transition:.3s ease;
+}
+
+.contact-item:hover{
+transform:translateY(-5px);
+box-shadow:0 15px 40px rgba(0,0,0,.6);
+}
+
+/* ADDRESS BOX */
+.contact-item.address{
+flex:1.3;
+}
+
+/* QR BOX */
+.contact-item.qr{
+flex:0 0 200px;
+text-align:center;
+justify-content:center;
+}
+
+.contact-item.qr img{
+width:220px;
+background:#fff;
+padding:10px;
+border-radius:14px;
+margin:10px auto;
+}
+
+.contact-item.qr p{
+font-size:13px;
+color:#cbd5e1;
+}
+
+/* MAP BOX */
+.contact-item.map{
+flex:0 0 450px;
+}
+
+.contact-item.map iframe{
+width:100%;
+height:350px;
+border:0;
+border-radius:14px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+.contact-wrapper{
+flex-direction:column;
+flex-wrap:wrap;
+}
+.contact-item.map iframe{
+height:260px;
+}
+}
+
+/* WHATSAPP BAR */
+.whatsapp-bar {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;          /* Makes width and height identical for a perfect circle */
+  height: 60px;
+  background-color: #25d366;
+  border-radius: 50%;   /* Forces the element shape into a perfect round circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+
+.whatsapp-bar:hover {
+  background-color: #1ebe5d;
+  transform: scale(1.08); /* Gives a tiny, subtle popup pulse animation on hover */}
+
+/* RESPONSIVE */
+    @media(max-width:900px){
+        .hero { flex-direction: column; padding: 40px 20px; text-align: center; }
+        .hero-content { margin-right: 0; margin-bottom: 40px; }
+        .services-grid { grid-template-columns: 100%; }
+        .contact-wrapper { flex-direction: column; }
+        .contact-item.address, .contact-item.qr, .contact-item.map { width: 100%; max-width: 100%; flex: none; }
+        .contact-item.map iframe { height: 260px; }
+    }
+
+/* HOME REDESIGN START */
+.hero{
+background:
+linear-gradient(90deg,rgba(255,255,255,.93) 0%,rgba(255,255,255,.84) 34%,rgba(255,255,255,.28) 58%,rgba(255,255,255,.10) 100%),
+url('home-design.jpg') center/cover no-repeat;
+color:#0b2545;
+}
+.hero-content{
+position:relative;
+z-index:2;
+}
+.hero h1{
+color:#0b2545;
+}
+.hero p{
+color:#183153;
+}
+.form-card{
+position:relative;
+z-index:3;
+background:rgba(255,255,255,.96);
+border:1px solid rgba(11,37,69,.10);
+}
+#services{
+background:
+radial-gradient(circle at 10% 10%,rgba(212,154,43,.10),transparent 28%),
+linear-gradient(180deg,#f8f6ef 0%,#ffffff 55%,#f5f7fa 100%);
+color:#0b2545;
+}
+#contact{
+background:
+radial-gradient(circle at 90% 10%,rgba(212,154,43,.12),transparent 26%),
+linear-gradient(145deg,#f8f6ef,#eef3f8 55%,#ffffff);
+color:#0b2545;
+}
+#services h2,#contact h2{
+color:#0b2545;
+}
+.contact-item{
+background:rgba(255,255,255,.90);
+border:1px solid rgba(11,37,69,.10);
+color:#0b2545;
+}
+.contact-item p,.contact-item a{
+color:#183153;
+}
+@media (max-width: 800px){
+.hero{
+background-position:center;
+}
+}
+ /* HOME REDESIGN END */
+
+
+
+/* ===== FINAL LIGHT PREMIUM THEME OVERRIDES ===== */
+body{background:#f7f8fa;color:#0b2545}
+.top-nav{background:rgba(255,255,255,.72);border:1px solid rgba(11,37,69,.12);box-shadow:0 8px 24px rgba(11,37,69,.10);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.top-nav a{color:#0b2545}
+.top-nav a:hover{color:#c98b20}
+.top-nav a::after{background:#22c55e}
+section#services{background:linear-gradient(180deg,#fbfaf7 0%,#f3f6f9 100%);min-height:100vh;padding:45px 4% 70px}
+section#services h2{font-family:Georgia,'Times New Roman',serif;text-align:center;color:#0b2545;font-size:42px;letter-spacing:.5px;margin-bottom:8px}
+section#services h2::before,section#services h2::after{content:"";display:inline-block;width:60px;height:2px;background:#c98b20;vertical-align:middle;margin:0 16px}
+section#services h2 + .services-grid::before{content:"Comprehensive solutions for all your accounting, taxation and compliance needs.";display:block;grid-column:1/-1;text-align:center;color:#4d6074;font-size:15px;margin:-4px 0 5px}
+.services-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;padding:18px 0}
+.service{background:rgba(255,255,255,.96);border:1px solid #e4e8ee;border-radius:16px;padding:22px 20px 18px;min-height:125px;box-shadow:0 7px 24px rgba(11,37,69,.07);color:#0b2545;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.service::before{width:4px;background:#c98b20}
+.service:hover{border-color:#c98b20;transform:translateY(-4px);box-shadow:0 14px 32px rgba(11,37,69,.12)}
+.service h3{display:flex;align-items:center;gap:13px;color:#0b2545;font-size:17px;line-height:1.25;margin:0}
+.service-icon{width:50px;height:50px;min-width:50px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#0b2545;color:#fff;font-size:20px;font-weight:800;box-shadow:0 5px 14px rgba(11,37,69,.14)}
+.service:nth-child(even) .service-icon{background:#c98b20}
+.service-details ul{color:#40556c}.service-details li{color:#40556c}
+.service-details{border-top:1px solid #edf0f3;margin-top:12px;padding-top:2px}
+.legal-note{color:#718096}
+.whatsapp-btn{background:#25D366;border-radius:24px;padding:9px 14px}
+#contact{background:linear-gradient(145deg,#f8fafc,#eef3f7);color:#0b2545}
+#contact h2{color:#0b2545;text-align:center}
+.contact-item{background:rgba(255,255,255,.94);color:#0b2545;border:1px solid #e1e7ed;box-shadow:0 10px 28px rgba(11,37,69,.08);backdrop-filter:blur(7px)}
+.contact-item.qr p{color:#617287}
+footer{background:#0b2545!important;border-top:1px solid #183d64!important}
+@media(max-width:1000px){.services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.services-grid{grid-template-columns:1fr}section#services h2{font-size:32px}section#services h2::before,section#services h2::after{width:28px;margin:0 8px}}
+
+
+/* FINAL USER-SUPPLIED BACKGROUNDS */
+body.services-page{
+  background:#f8f6ef url('service-contact-background.png') center top/cover fixed no-repeat;
+}
+body.services-page section#services{
+  background:rgba(255,255,255,.10);
+}
+body.contact-page{
+  background:#f8f6ef url('service-contact-background.png') center top/cover fixed no-repeat;
+}
+body.contact-page section#contact{
+  background:rgba(255,255,255,.10);
+}
+@media(max-width:900px){
+  body.services-page,body.contact-page{background-attachment:scroll;}
+}
+
+
+/* FINAL SERVICE ICON VISIBILITY FIX — icons only */
+.service h3 .service-icon{width:56px;height:56px;min-width:56px;flex:0 0 56px;border-radius:50%;padding:9px;overflow:visible;line-height:1;}
+.service h3 .service-icon svg{width:100%;height:100%;display:block;overflow:visible;color:currentColor;fill:none;}
+
+
+/* ===== USER REQUEST: NEW LOGO PLACEMENT + ENHANCED SERVICE ICONS ONLY ===== */
+/* The newly supplied logo is used in both requested home locations:
+   1) centered over the India-map artwork;
+   2) immediately to the left of the manual ALIF brand text. */
+.brand-mark-row{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:clamp(10px,1vw,16px);
+  min-height:clamp(50px,7.2vh,76px);
+}
+.brand-mark-row .manual-logo{
+  display:block;
+  width:clamp(50px,5.4vw,78px);
+  height:clamp(50px,7vh,74px);
+  max-width:none;
+  max-height:none;
+  object-fit:contain;
+  flex:0 0 auto;
+  filter:drop-shadow(0 5px 10px rgba(11,37,69,.16));
+}
+.home-map-logo{
+  position:absolute;
+  left:75.2%;
+  top:43.5%;
+  transform:translate(-50%,-50%);
+  width:clamp(145px,12vw,205px);
+  height:auto;
+  z-index:4;
+  object-fit:contain;
+  pointer-events:none;
+  filter:drop-shadow(0 8px 16px rgba(11,37,69,.20));
+}
+
+/* More distinctive premium service-grid icon treatment only.
+   Existing SVG symbols, service order, card sizing, expansion and text are untouched. */
+section#services .service h3 .service-icon{
+  position:relative;
+  width:60px;
+  height:60px;
+  min-width:60px;
+  flex:0 0 60px;
+  padding:10px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#0b2545 0%,#173c67 72%,#244f7f 100%);
+  color:#fff;
+  border:1px solid rgba(201,139,32,.78);
+  box-shadow:0 8px 18px rgba(11,37,69,.18),inset 0 1px 0 rgba(255,255,255,.22);
+  overflow:visible;
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease,border-color .25s ease;
+}
+section#services .service h3 .service-icon::before{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border:1px solid rgba(255,255,255,.30);
+  border-radius:14px;
+  pointer-events:none;
+}
+section#services .service h3 .service-icon::after{
+  content:"";
+  position:absolute;
+  width:8px;
+  height:8px;
+  right:3px;
+  top:3px;
+  border-radius:50%;
+  background:#e1aa43;
+  box-shadow:0 0 0 2px rgba(255,255,255,.20),0 0 9px rgba(225,170,67,.45);
+  pointer-events:none;
+}
+section#services .service:nth-child(even) h3 .service-icon{
+  background:linear-gradient(145deg,#b97812 0%,#d99a2e 60%,#e5b45d 100%);
+  border-color:rgba(11,37,69,.28);
+  color:#fff;
+}
+section#services .service:nth-child(even) h3 .service-icon::before{
+  border-color:rgba(255,255,255,.38);
+}
+section#services .service:nth-child(even) h3 .service-icon::after{
+  background:#0b2545;
+  box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 9px rgba(11,37,69,.28);
+}
+section#services .service h3 .service-icon svg{
+  width:100%;
+  height:100%;
+  display:block;
+  overflow:visible;
+  color:currentColor;
+  fill:none;
+  position:relative;
+  z-index:1;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.10));
+}
+section#services .service:hover h3 .service-icon{
+  transform:translateY(-3px) rotate(-1deg) scale(1.06);
+  box-shadow:0 13px 26px rgba(11,37,69,.24),inset 0 1px 0 rgba(255,255,255,.26);
+  border-color:#c98b20;
+}
+@media(max-width:900px){
+  .brand-mark-row{gap:10px;min-height:58px}
+  .brand-mark-row .manual-logo{width:58px;height:58px}
+  .home-map-logo{
+    left:75%;
+    top:41%;
+    transform:translate(-50%,-50%);
+    width:clamp(105px,20vw,155px);
+  }
+  section#services .service h3 .service-icon{
+    width:56px;height:56px;min-width:56px;flex-basis:56px;padding:9px;
+  }
+}
+
+
+/* ===== FINAL SERVICE PAGE HEADER + GRID ALIGNMENT ===== */
+section#services{
+  min-height:100vh;
+}
+
+section#services .services-heading-row{
+  width:100%;
+  margin:0 auto 4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  min-height:88px;
+}
+
+section#services .services-page-logo{
+  width:82px;
+  height:82px;
+  object-fit:contain;
+  flex:0 0 82px;
+  filter:drop-shadow(0 7px 12px rgba(11,37,69,.14));
+}
+
+section#services .services-heading-row h2{
+  margin:0;
+  text-align:left;
+  white-space:nowrap;
+  font-family:Georgia,'Times New Roman',serif;
+  color:#0b2545;
+  font-size:42px;
+  letter-spacing:.5px;
+}
+section#services .services-heading-row h2::before,
+section#services .services-heading-row h2::after{
+  content:"";
+  display:inline-block;
+  width:60px;
+  height:2px;
+  background:#c98b20;
+  vertical-align:middle;
+  margin:0 16px;
+}
+
+section#services .services-grid{
+  width:100%;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+  padding:18px 0 70px;
+  align-items:stretch;
+}
+
+section#services h2 + .services-grid::before{
+  content:"Comprehensive solutions for all your accounting, taxation and compliance needs.";
+  display:block;
+  grid-column:1/-1;
+  text-align:center;
+  color:#4d6074;
+  font-size:15px;
+  margin:-7px 0 3px;
+}
+
+section#services .service{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  min-height:132px;
+  box-sizing:border-box;
+  padding:20px 20px 17px;
+}
+
+section#services .service h3{
+  display:grid;
+  grid-template-columns:68px minmax(0,1fr);
+  align-items:center;
+  column-gap:15px;
+  min-height:68px;
+  margin:0;
+}
+
+section#services .service h3 .service-icon{
+  width:68px;
+  height:68px;
+  min-width:68px;
+  flex:0 0 68px;
+  padding:11px;
+  box-sizing:border-box;
+  border-radius:20px;
+  justify-self:start;
+  align-self:center;
+  background:linear-gradient(145deg,#0b2545 0%,#173c67 68%,#315d86 100%);
+  border:1px solid rgba(201,139,32,.85);
+  box-shadow:0 9px 20px rgba(11,37,69,.16),inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+section#services .service:nth-child(even) h3 .service-icon{
+  background:linear-gradient(145deg,#b97812 0%,#d39a2d 62%,#e5b45d 100%);
+  border-color:rgba(11,37,69,.25);
+}
+
+/* Futuristic layered/tile feel inspired by the supplied reference,
+   while retaining the site's existing navy/gold palette. */
+section#services .service h3 .service-icon::before{
+  content:"";
+  position:absolute;
+  inset:5px;
+  border:1px solid rgba(255,255,255,.32);
+  border-radius:15px;
+  pointer-events:none;
+}
+section#services .service h3 .service-icon::after{
+  content:"";
+  position:absolute;
+  right:-4px;
+  bottom:-4px;
+  width:12px;
+  height:12px;
+  border-radius:3px;
+  border:1px solid rgba(201,139,32,.9);
+  background:rgba(255,255,255,.12);
+  box-shadow:0 4px 10px rgba(11,37,69,.18);
+  pointer-events:none;
+}
+
+section#services .service h3 .service-icon svg{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+section#services .service h3{
+  color:#0b2545;
+  font-size:17px;
+  line-height:1.28;
+}
+
+section#services .service-details{
+  width:100%;
+}
+
+@media(max-width:1000px){
+  section#services .services-heading-row{width:100%;gap:16px}
+  section#services .services-page-logo{width:68px;height:68px;flex-basis:68px}
+  section#services .services-heading-row h2{font-size:36px}
+  section#services .services-heading-row h2::before,
+  section#services .services-heading-row h2::after{width:42px;margin:0 10px}
+  section#services .services-grid{grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+}
+
+@media(max-width:600px){
+  section#services .services-heading-row{
+    justify-content:flex-start;
+    gap:12px;
+    min-height:72px;
+  }
+  section#services .services-page-logo{width:58px;height:58px;flex-basis:58px}
+  section#services .services-heading-row h2{
+    font-size:29px;
+    white-space:normal;
+    line-height:1.05;
+  }
+  section#services .services-heading-row h2::before,
+  section#services .services-heading-row h2::after{display:none}
+  section#services .services-grid{grid-template-columns:1fr;width:100%;gap:14px}
+  section#services .service h3{grid-template-columns:60px minmax(0,1fr);column-gap:12px}
+  section#services .service h3 .service-icon{width:60px;height:60px;min-width:60px;flex-basis:60px}
+}
+
+/* ===== FINAL REFERENCE-STYLE SERVICES ARRANGEMENT =====
+   Desktop composition matches the supplied reference: the first and
+   fourth cards flank a central logo + two-line heading block. Existing
+   service order, expansion behavior, text, navigation and other page
+   settings are unchanged. */
+@media (min-width:1001px){
+  section#services{
+    position:relative;
+    padding:92px 2.7% 70px;
+  }
+
+  section#services .services-heading-row{
+    position:absolute;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:610px;
+    height:205px;
+    min-height:0;
+    margin:0;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:28px;
+    z-index:25;
+    pointer-events:none;
+  }
+
+  /* The vertical gold divider in the reference sits between the logo and title. */
+  section#services .services-heading-row::before{
+    content:"";
+    position:absolute;
+    left:222px;
+    top:6px;
+    width:3px;
+    height:194px;
+    background:#c98b20;
+    opacity:.95;
+  }
+
+  section#services .services-page-logo{
+    width:190px;
+    height:190px;
+    flex:0 0 190px;
+    object-fit:contain;
+    filter:drop-shadow(0 8px 14px rgba(11,37,69,.18));
+  }
+
+  section#services .services-heading-row h2{
+    position:relative;
+    width:350px;
+    margin:0;
+    padding:42px 0 38px;
+    white-space:normal;
+    text-align:center;
+    font-family:Georgia,'Times New Roman',serif;
+    color:#0b2545;
+    font-size:51px;
+    line-height:.98;
+    letter-spacing:.1px;
+  }
+
+  /* Two clean gold rules above and below the two-line title. */
+  section#services .services-heading-row h2::before,
+  section#services .services-heading-row h2::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    width:194px;
+    height:2px;
+    background:#c98b20;
+    margin:0;
+  }
+  section#services .services-heading-row h2::before{top:16px;}
+  section#services .services-heading-row h2::after{bottom:13px;}
+
+  /* Small gold center ornaments on the title rules. */
+  section#services .services-heading-row h2 span{display:block;}
+  section#services .services-heading-row h2 span::after{
+    content:"";
+  }
+
+  section#services .services-grid{
+    width:100%;
+    margin:0;
+    padding:0 0 70px;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    align-items:stretch;
+  }
+
+  /* The first and fourth cards flank the central header. */
+  section#services .service:nth-child(1){grid-column:1;grid-row:1;}
+  section#services .service:nth-child(4){grid-column:4;grid-row:1;}
+
+  /* Remaining services fill the four-column grid in the existing order. */
+  section#services .service:nth-child(2){grid-column:1;grid-row:2;}
+  section#services .service:nth-child(3){grid-column:2;grid-row:2;}
+  section#services .service:nth-child(5){grid-column:3;grid-row:2;}
+  section#services .service:nth-child(6){grid-column:4;grid-row:2;}
+  section#services .service:nth-child(7){grid-column:1;grid-row:3;}
+  section#services .service:nth-child(8){grid-column:2;grid-row:3;}
+  section#services .service:nth-child(9){grid-column:3;grid-row:3;}
+  section#services .service:nth-child(10){grid-column:4;grid-row:3;}
+  section#services .service:nth-child(11){grid-column:1;grid-row:4;}
+  section#services .service:nth-child(12){grid-column:2;grid-row:4;}
+  section#services .service:nth-child(13){grid-column:3;grid-row:4;}
+  section#services .service:nth-child(14){grid-column:4;grid-row:4;}
+  section#services .service:nth-child(15){grid-column:1;grid-row:5;}
+  section#services .service:nth-child(16){grid-column:2;grid-row:5;}
+  section#services .service:nth-child(17){grid-column:3;grid-row:5;}
+
+  section#services .service{
+    min-height:132px;
+    padding:20px 18px 17px;
+    box-sizing:border-box;
+  }
+
+  /* Reference-style compact premium icons: deep navy + crisp gold artwork. */
+  section#services .service h3 .service-icon{
+    width:84px;
+    height:84px;
+    min-width:84px;
+    flex:0 0 84px;
+    padding:13px;
+    box-sizing:border-box;
+    border-radius:19px;
+    position:relative;
+    border:1.5px solid #d39a2d;
+    background:#0b2545;
+    color:#e7ae3f;
+    box-shadow:0 8px 18px rgba(11,37,69,.18),inset 0 1px 0 rgba(255,255,255,.22);
+  }
+
+  /* Every icon stays navy; gold is reserved for the actual icon artwork. */
+  section#services .service:nth-child(even) h3 .service-icon{
+    background:#0b2545;
+    border-color:#d39a2d;
+    color:#e7ae3f;
+  }
+
+  section#services .service h3 .service-icon::before{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border-radius:14px;
+    border:1px solid rgba(211,154,45,.62);
+    pointer-events:none;
+  }
+
+  section#services .service h3 .service-icon::after{
+    content:none !important;
+    display:none !important;
+  }
+
+  section#services .service h3 .service-icon svg{
+    position:relative;
+    z-index:1;
+    width:100%;
+    height:100%;
+    display:block;
+    overflow:visible;
+    color:currentColor;
+    fill:none;
+    filter:none;
+  }
+
+  section#services .service h3{
+    grid-template-columns:84px minmax(0,1fr);
+    column-gap:15px;
+  }
+}
+
+@media (max-width:1000px){
+  section#services .services-page-logo{
+    width:82px;
+    height:82px;
+    flex-basis:82px;
+  }
+  section#services .service h3 .service-icon{
+    width:64px;
+    height:64px;
+    min-width:64px;
+    flex-basis:64px;
+    position:relative;
+  }
+  section#services .service h3 .service-icon::after{
+    content:none !important;
+    display:none !important;
+  }
+  section#services .service h3{
+    grid-template-columns:64px minmax(0,1fr);
+  }
+}
+
+@media (max-width:600px){
+  section#services .services-page-logo{
+    width:66px;
+    height:66px;
+    flex-basis:66px;
+  }
+  section#services .service h3 .service-icon{
+    width:60px;
+    height:60px;
+    min-width:60px;
+    flex-basis:60px;
+  }
+}
+
+
+/* ===== FINAL USER LOGO PLACEMENT — ONLY REQUESTED LOGO CHANGES =====
+   Main logo: centered on the India map.
+   Logo 1: beside the manual ALIF brand text and larger on the Services page.
+   No other site settings, content, navigation or behavior are changed. */
+@media (min-width:901px){
+  .brand-mark-row .manual-logo{
+    width:72px;
+    height:72px;
+  }
+  .home-map-logo{
+    left:79.5%;
+    top:44.5%;
+    width:clamp(175px,13vw,220px);
+  }
+}
+
+@media (min-width:1001px){
+  section#services .services-heading-row{
+    width:690px;
+    height:235px;
+    gap:32px;
+  }
+  section#services .services-heading-row::before{
+    left:268px;
+    height:222px;
+  }
+  section#services .services-page-logo{
+    width:230px;
+    height:230px;
+    flex-basis:230px;
+  }
+  section#services .services-heading-row h2{
+    width:390px;
+    font-size:53px;
+  }
+  section#services{
+    padding-top:112px;
+  }
+}
+
+@media (max-width:900px){
+  .brand-mark-row .manual-logo{width:62px;height:62px}
+  .home-map-logo{
+    left:75%;
+    top:46%;
+    width:clamp(120px,21vw,165px);
+  }
+  section#services .services-page-logo{
+    width:82px;
+    height:82px;
+    flex-basis:82px;
+  }
+}
+
+
+/* ===== FINAL MICRO-FIX: LARGER BRAND LOGO + SHORTER VISIBLE SERVICE STRIP =====
+/* Only the two items requested in the latest update are changed. */
+@media (min-width:901px){
+  .brand-mark-row{
+    min-height:clamp(108px,12vh,130px);
+    gap:clamp(12px,1.1vw,18px);
+  }
+  .brand-mark-row .manual-logo{
+    width:clamp(115px,8.8vw,130px);
+    height:clamp(115px,11.8vh,130px);
+  }
+
+  .home-service-strip{
+    width:min(31vw,440px);
+    max-width:440px;
+    min-width:0;
+    margin-top:clamp(6px,1.4vh,13px);
+    padding:5px 0;
+    border:1px solid rgba(201,139,32,.58);
+    border-radius:10px;
+    background:rgba(255,255,255,.88);
+    box-shadow:0 5px 14px rgba(11,37,69,.10);
+    box-sizing:border-box;
+  }
+  .home-service-strip>div{
+    min-height:47px;
+    padding:0 4px;
+    box-sizing:border-box;
+  }
+  .home-service-strip span{
+    font-size:20px;
+    color:#c98b20;
+  }
+  .home-service-strip b{
+    font-size:10px;
+    color:#0b2545;
+    white-space:nowrap;
+  }
+}
+
+@media (max-width:900px){
+  .brand-mark-row .manual-logo{width:92px;height:92px}
+  .home-service-strip{
+    width:100%;
+    max-width:100%;
+    background:rgba(255,255,255,.88);
+    border-radius:8px;
+  }
+}
+
+/* ===== USER REQUEST: COMPACT SERVICES PAGE ONLY ===== */
+@media (min-width:1001px){
+  /* FINAL SERVICES MICRO-FIX: slightly higher grid, smaller centered header, no overlap. */
+  section#services{padding-top:62px;}
+  section#services .services-heading-row{
+    top:8px;
+    width:650px;
+    height:205px;
+    gap:28px;
+  }
+  section#services .services-heading-row::before{
+    left:235px;
+    height:194px;
+  }
+  section#services .services-page-logo{
+    width:200px;
+    height:200px;
+    flex-basis:200px;
+  }
+  section#services .services-heading-row h2{
+    width:365px;
+    font-size:38px;
+    line-height:.98;
+    padding:40px 0 36px;
+  }
+}
+
+
+/* ===== LATEST REQUEST: GOLD CHECK MARKS + CLEAR SERVICES SUBTITLE STRIP ===== */
+.editable-copy .benefit-line{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  margin:7px 0;
+}
+.editable-copy .benefit-check{
+  flex:0 0 auto;
+  width:19px;
+  height:19px;
+  margin-top:1px;
+  border:2px solid #c98b20;
+  border-radius:50%;
+  box-sizing:border-box;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#c98b20;
+  font:700 13px/1 Arial,sans-serif;
+}
+.editable-copy .benefit-line > span:last-child{
+  min-width:0;
+  font-weight:900;
+}
+.editable-copy .intro-copy{
+  font-weight:900;
+}
+.services-subtitle-strip{
+  display:block;
+  box-sizing:border-box;
+  width:min(100%,390px);
+  margin:8px auto 0;
+  padding:7px 12px;
+  border:1px solid rgba(201,139,32,.72);
+  border-radius:7px;
+  background:rgba(255,255,255,.88);
+  color:#c98b20;
+  text-align:center;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.25;
+  box-shadow:0 4px 12px rgba(11,37,69,.08);
+}
+@media (min-width:1001px){
+  section#services .services-heading-row h2{
+    padding-bottom:22px;
+  }
+  section#services .services-heading-row .services-heading-copy{
+    width:365px;
+    flex:0 0 365px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  section#services .services-heading-row .services-subtitle-strip{
+    width:365px;
+    max-width:365px;
+    margin-top:-8px;
+    font-size:13px;
+    padding:7px 10px;
+  }
+}
+@media (max-width:900px){
+  .editable-copy .benefit-line{gap:7px;margin:6px 0;}
+  .editable-copy .benefit-check{width:18px;height:18px;font-size:12px;}
+  .services-subtitle-strip{width:100%;max-width:390px;font-size:13px;}
+}
+
+/* ===== FINAL REQUEST: MATCH HOME TRUST STRIP WEIGHT TO LOWER COMBINED STRIP ===== */
+/* Home page only — no layout, spacing, colors, links, or service-page rules changed. */
+.hero.premium-home-hero .editable-copy .benefit-line > span:last-child,
+.hero.premium-home-hero .editable-copy .intro-copy{
+  font-weight:900;
+  -webkit-text-stroke:0.18px currentColor;
+  text-shadow:0 0 0.25px currentColor;
+}
+.hero.premium-home-hero .editable-copy .benefit-check{
+  font-weight:900;
+  -webkit-text-stroke:0.15px currentColor;
+}
+
+/* FINAL MICRO-FIX: center the Home map logo over the visual center of the India map. */
+@media (min-width:901px){
+  .home-map-logo{
+    left:73.5%;
+    top:44.5%;
+  }
+}
+@media (max-width:900px){
+  .home-map-logo{
+    left:75%;
+    top:46%;
+  }
+}
+
+
+/* FINAL MICRO-FIX: extra breathing room for COMPLETE CONFIDENTIALITY only */
+@media (min-width:901px){ .home-feature-strip>div:nth-child(9) b{ line-height:1.35; } }
