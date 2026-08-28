@@ -1,0 +1,19 @@
+ALIF ACCOUNTS & TAX HUB — SEO SETUP
+Updated: 2026-08-27
+
+Included:
+- Canonical URLs on all HTML pages
+- Google/social metadata
+- Local service-area wording for Ghatal, Paschim Medinipur, Kolkata, West Bengal and India
+- AccountingService structured data on the homepage
+- WebPage/ContactPage structured data
+- robots.txt sitemap declaration
+- lowercase sitemap.xml at the site root
+
+Google Search Console:
+1. Keep domain ownership verification DNS record.
+2. Keep https://alifaccountsandtaxhub.com/sitemap.xml submitted.
+3. Request indexing for the homepage after deployment.
+4. After deployment, inspect services.html and contact.html and request indexing if needed.
+
+Important: SEO can improve relevance and discoverability, but Google rankings (including #1 position) cannot be guaranteed.
