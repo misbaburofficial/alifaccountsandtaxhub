@@ -107,7 +107,7 @@ transition:width .25s ease;
   <div class="services-grid">
 
     <!-- 1. Accounting & Bookkeeping -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="accounting" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-accounting"></use></svg></span>Accounting & Bookkeeping</h3>
       <div class="service-details">
         <ul>
@@ -120,7 +120,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 2. Income Tax Registration & Returns -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="income-tax" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-tax"></use></svg></span>Income Tax Registration & Returns</h3>
       <div class="service-details">
         <ul>
@@ -133,7 +133,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 3. Preparation of Balance Sheet, CMA Report & Net Worth Certificate -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="balance-sheet" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-balance"></use></svg></span>Preparation of Balance Sheet, CMA Report & Net Worth Certificate</h3>
       <div class="service-details">
         <ul>
@@ -146,7 +146,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 4. AUDIT (Statutory & Tax Audit) -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="audit" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-audit"></use></svg></span>AUDIT ASSISTANCE / SUPPORT (Statutory & Tax Audit)</h3>
       <div class="service-details">
         <ul>
@@ -159,20 +159,21 @@ transition:width .25s ease;
     </div>
 
     <!-- 5. GST Registration & Returns -->
-    <div class="service" role="button" tabindex="0">
-      <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-gst"></use></svg></span>GST Registration & Returns</h3>
+    <div class="service" id="gst" role="button" tabindex="0">
+      <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-gst"></use></svg></span>GST REGISTARTION & RETURNS & REFUNDS</h3>
       <div class="service-details">
         <ul>
           <li>New GST Registration</li>
           <li>Monthly & Quarterly GSTR Filing</li>
           <li>GST Reconciliations</li>
+          <li>GST REFUNDS (Excess Cash Balance, Zero-Rated Supplies, Inverted Duty Structure, Excess Tax Payment)</li>
         </ul>
         <a class="whatsapp-btn"  href="https://wa.me/917278318151?text=I%20need%20GST%20services" target="_blank">WhatsApp for GST</a>
       </div>
     </div>
 
     <!-- 6. ROC Returns -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="roc" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-roc"></use></svg></span>ROC Returns</h3>
       <div class="service-details">
         <ul>
@@ -185,7 +186,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 7. TDS Returns & TAN Registration -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="tds" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-tds"></use></svg></span>TDS Returns & TAN Registration</h3>
       <div class="service-details">
         <ul>
@@ -198,7 +199,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 8. P.Tax Registration & Returns -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="ptax" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-ptax"></use></svg></span>P.Tax (Profession / Professional Tax) Registration & Returns</h3>
       <div class="service-details">
         <ul>
@@ -211,7 +212,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 9. Company & Business Formation -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="company" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-company"></use></svg></span>Company & Business Formation (Pvt Ltd / LLP / Ltd / OPC)</h3>
       <div class="service-details">
         <ul>
@@ -225,7 +226,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 10. STARTUP / DPIIT Registration -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="startup" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-startup"></use></svg></span>STARTUP / DPIIT Registration</h3>
       <div class="service-details">
         <ul>
@@ -238,7 +239,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 11. MSME / UDYAM Registration -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="msme" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-msme"></use></svg></span>MSME / UDYAM Registration</h3>
       <div class="service-details">
         <ul>
@@ -251,7 +252,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 12. Trade Mark Registration -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="trademark" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-trademark"></use></svg></span>Trade Mark Registration</h3>
       <div class="service-details">
         <ul>
@@ -263,7 +264,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 13. FSSAI License & Returns -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="fssai" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-fssai"></use></svg></span>FSSAI License & Returns</h3>
       <div class="service-details">
         <ul>
@@ -276,7 +277,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 14. GST / Income Tax Departmental Compliance -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="departmental-compliance" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-compliance"></use></svg></span>GST / Income Tax Departmental Compliance Handling</h3>
       <div class="service-details">
         <ul>
@@ -289,7 +290,7 @@ transition:width .25s ease;
     </div>
 
     <!-- 15. Trade License -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="trade-license" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-trade-license"></use></svg></span>Trade License</h3>
       <div class="service-details">
         <ul>
@@ -302,7 +303,7 @@ transition:width .25s ease;
     </div>
 
    <!-- 16. PAN Card Services -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="pan" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-pan"></use></svg></span>PAN Card Services</h3>
       <div class="service-details">
         <ul>
@@ -316,7 +317,7 @@ transition:width .25s ease;
     </div>
 
    <!-- 17. DSC Preparation & Other Services -->
-    <div class="service" role="button" tabindex="0">
+    <div class="service" id="other-services" role="button" tabindex="0">
       <h3><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><use href="#icon-dsc"></use></svg></span>DSC Preparation & Other Services</h3>
       <div class="service-details">
         <ul>
@@ -699,6 +700,35 @@ document.addEventListener('focusin', function(event) {
         details.scrollHeight + "px";
 
 });
+// 6. HOME ORBIT DEEP LINKS — open the requested service automatically.
+(function(){
+  function openLinkedService(){
+    const id=window.location.hash ? window.location.hash.slice(1) : '';
+    if(!id) return;
+    const card=document.getElementById(id);
+    if(!card || !card.classList.contains('service')) return;
+
+    document.querySelectorAll('.services-grid .service').forEach(function(s){
+      if(s !== card){
+        s.classList.remove('active');
+        const details=s.querySelector('.service-details');
+        if(details) details.style.maxHeight=null;
+      }
+    });
+
+    card.classList.add('active');
+    const details=card.querySelector('.service-details');
+    if(details) details.style.maxHeight=details.scrollHeight + 'px';
+
+    setTimeout(function(){
+      card.scrollIntoView({behavior:'smooth',block:'center'});
+    },80);
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded',openLinkedService);
+  else openLinkedService();
+  window.addEventListener('hashchange',openLinkedService);
+})();
 </script>
 <style id="final-requested-service-grid-font-only">
 /* ONLY requested change: visible service-grid headings use Sacramento.
@@ -742,6 +772,13 @@ section#services .services-grid .service > h3{
 <style id="final-user-lobster-service-grid-only">
 /* Latest request only: visible service-grid headings use Lobster. Expanded service details remain unchanged. */
 section#services .services-grid .service > h3{
-  font-family:"Lobster",cursive !important;
+  font-family:"Times New Roman",Times,serif !important;
+}
+</style>
+<style id="final-user-service-grid-uppercase-bold">
+/* ONLY latest request: service-grid headings are visually uppercase and bold. */
+section#services .services-grid .service > h3{
+  text-transform:uppercase !important;
+  font-weight:700 !important;
 }
 </style>

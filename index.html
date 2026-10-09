@@ -628,6 +628,123 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;margin:0;padding:0}
 </style>
 </head>
 <body>
+<script id="final-entry-video-session-gate">
+/* Prevent the entry video overlay from ever flashing on repeat visits. */
+(function(){
+  let firstVisit=true;
+  try{ firstVisit=sessionStorage.getItem('alifEntryVideoPlayed') !== '1'; }catch(e){}
+  if(firstVisit) document.documentElement.classList.add('alif-entry-video-first');
+})();
+</script>
+
+<style id="final-entry-video-1-5sec-only">
+/* FINAL ENTRY VIDEO SEQUENCE — only the requested second intro was added. */
+#entryVideoOverlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  align-items:center;
+  justify-content:center;
+  background:#0b2545;
+  opacity:1;
+  visibility:visible;
+  transition:opacity .35s ease,visibility .35s ease;
+  overflow:hidden;
+}
+html.alif-entry-video-first #entryVideoOverlay{
+  display:flex;
+}
+#entryVideoOverlay.is-hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+#entryVideoOverlay video{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:fill;
+  background:#0b2545;
+}
+#entryVideoOverlay .alif-press-here{
+  position:absolute;
+  left:50%;
+  bottom:clamp(22px,5vh,52px);
+  transform:translateX(-50%);
+  z-index:2;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  min-width:170px;
+  padding:13px 28px;
+  border:2px solid rgba(255,255,255,.95);
+  border-radius:999px;
+  background:#f59e0b;
+  color:#102a43;
+  font-family:"Times New Roman",Times,serif;
+  font-size:clamp(16px,1.35vw,22px);
+  font-weight:700;
+  letter-spacing:.5px;
+  cursor:pointer;
+  box-shadow:0 8px 26px rgba(0,0,0,.35),0 0 0 3px rgba(255,255,255,.14);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+}
+#entryVideoOverlay .alif-press-here.is-visible{
+  display:flex;
+}
+#entryVideoOverlay .alif-press-here:focus-visible{
+  outline:3px solid rgba(255,255,255,.95);
+  outline-offset:4px;
+}
+@media(max-width:900px){
+  #entryVideoOverlay video{object-fit:fill;}
+  #entryVideoOverlay .alif-press-here{
+    bottom:clamp(18px,4vh,34px);
+    min-width:150px;
+    padding:12px 24px;
+    font-size:17px;
+  }
+}
+/* Responsive viewport fit: adapt to changing laptop, desktop and mobile screen sizes. */
+html, body { }
+#entryVideoOverlay {
+  width:100vw;
+  width:100dvw;
+  height:100vh;
+  height:100dvh;
+  min-width:0;
+  min-height:0;
+}
+#entryVideoOverlay video {
+  width:100vw;
+  width:100dvw;
+  height:100vh;
+  height:100dvh;
+  max-width:none;
+  max-height:none;
+  object-fit:fill;
+  object-position:center center;
+}
+@media (max-aspect-ratio: 3/4) {
+  #entryVideoOverlay .alif-press-here { bottom: max(22px, env(safe-area-inset-bottom)); }
+}
+@media (max-width:900px) {
+  #entryVideoOverlay { height:100vh; height:100dvh; }
+  #entryVideoOverlay video { width:100vw; width:100dvw; height:100vh; height:100dvh; object-fit:fill; }
+}
+</style>
+
+<div id="entryVideoOverlay" aria-hidden="false">
+  <video id="entryVideo" muted playsinline preload="auto">
+    <source src="intro.mp4" type="video/mp4">
+  </video>
+  <button id="alifPressHere" class="alif-press-here" type="button" aria-label="Press here to enter Home">PRESS HERE</button>
+</div>
+
 <nav class="top-nav" aria-label="Main navigation">
   <a class="active" href="index.html">HOME</a>
   <a class="" href="services.html">SERVICES</a>
@@ -661,6 +778,100 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;margin:0;padding:0}
 
   <!-- USER LOGO: same supplied logo is used on the India map and beside the manual ALIF brand mark. -->
   <img src="main-logo.png" alt="ALIF Accounts & Tax Hub logo" class="home-map-logo" aria-hidden="true">
+
+  <!-- FINAL USER REQUEST: fixed ALIF logo in the middle of the India map + slowly rotating service ring. -->
+  <div class="alif-service-orbit" aria-label="Our services">
+      <div class="alif-orbit-item" style="--orbit-angle:-90.000000deg;">
+        <a class="alif-orbit-card" href="services.html#accounting" aria-label="ACCOUNTING AND BOOKKEEPING">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">ACCOUNTING AND BOOKKEEPING</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:-66.000000deg;">
+        <a class="alif-orbit-card" href="services.html#company" aria-label="COMPANY REGISTRATION">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">COMPANY REGISTRATION</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:-42.000000deg;">
+        <a class="alif-orbit-card" href="services.html#tds" aria-label="TDS RETURNS">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">TDS RETURNS</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:-18.000000deg;">
+        <a class="alif-orbit-card" href="services.html#startup" aria-label="STARTUP REGISTRATION">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">STARTUP REGISTRATION</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:6.000000deg;">
+        <a class="alif-orbit-card" href="services.html#gst" aria-label="GST REGISTARTION & RETURNS & REFUNDS">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">GST REGISTARTION & RETURNS & REFUNDS</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:30.000000deg;">
+        <a class="alif-orbit-card" href="services.html#msme" aria-label="MSMS / UDYAM REGISTARTION">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">MSMS / UDYAM REGISTARTION</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:54.000000deg;">
+        <a class="alif-orbit-card" href="services.html#trademark" aria-label="TRADE MARK REGISTRATION">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">TRADE MARK REGISTRATION</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:78.000000deg;">
+        <a class="alif-orbit-card" href="services.html#fssai" aria-label="FSSAI REGISTRATION">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">FSSAI REGISTRATION</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:102.000000deg;">
+        <a class="alif-orbit-card" href="services.html#income-tax" aria-label="INCOME TAX RETURNS (INDIVIDUAL, FIRM, COMPANY, HUF ETC.)">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">INCOME TAX RETURNS (INDIVIDUAL, FIRM, COMPANY, HUF ETC.)</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:126.000000deg;">
+        <a class="alif-orbit-card" href="services.html#roc" aria-label="ROC FILLINGS">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">ROC FILLINGS</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:150.000000deg;">
+        <a class="alif-orbit-card" href="services.html#other-services" aria-label="OTHER SERVICES">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">OTHER SERVICES</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:174.000000deg;">
+        <a class="alif-orbit-card" href="services.html#audit" aria-label="AUDIT SUPPORT ASSITANCE">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">AUDIT SUPPORT ASSITANCE</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:198.000000deg;">
+        <a class="alif-orbit-card" href="services.html#ptax" aria-label="P. TAX ENROLLMENT & REGISTARTION AND RETURN">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">P. TAX ENROLLMENT & REGISTARTION AND RETURN</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:222.000000deg;">
+        <a class="alif-orbit-card" href="services.html#departmental-compliance" aria-label="DEPRATMENTAL COMPLIANCE">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">DEPRATMENTAL COMPLIANCE</span>
+        </a>
+      </div>
+      <div class="alif-orbit-item" style="--orbit-angle:246.000000deg;">
+        <a class="alif-orbit-card" href="services.html#balance-sheet" aria-label="CMA REPORT PREPARATION, NET WORTH CERTIFICATE">
+          <span class="alif-orbit-dot" aria-hidden="true"></span>
+          <span class="alif-orbit-text">CMA REPORT PREPARATION, NET WORTH CERTIFICATE</span>
+        </a>
+      </div>
+  </div>
 
   <div class="query-hover-zone" id="queryHoverZone">
   <button class="query-open-btn" id="queryOpenBtn" type="button" aria-label="Open Send Your Query form" aria-expanded="false">SEND YOUR QUERY</button>
@@ -999,59 +1210,28 @@ document.addEventListener('focusin', function(event) {
 </script>
 
 <script>
-// QUERY BUTTON / POPUP ONLY — hover opens and leaving the query area closes it.
+// QUERY BUTTON / POPUP ONLY — opens only by click/tap or keyboard activation.
 (function(){
-  const zone=document.getElementById('queryHoverZone');
   const openBtn=document.getElementById('queryOpenBtn');
   const popup=document.getElementById('queryPopup');
   const closeBtn=document.getElementById('queryCloseBtn');
-  if(!zone || !openBtn || !popup || !closeBtn) return;
-
-  let closeTimer=null;
+  if(!openBtn || !popup || !closeBtn) return;
 
   function openQuery(){
-    clearTimeout(closeTimer);
     popup.classList.add('is-open');
     popup.setAttribute('aria-hidden','false');
     openBtn.setAttribute('aria-expanded','true');
   }
 
   function closeQuery(){
-    clearTimeout(closeTimer);
     popup.classList.remove('is-open');
     popup.setAttribute('aria-hidden','true');
     openBtn.setAttribute('aria-expanded','false');
   }
 
-  function delayedClose(){
-    clearTimeout(closeTimer);
-    closeTimer=setTimeout(closeQuery,180);
-  }
-
-  // Desktop: moving the pointer onto the query area opens it.
-  zone.addEventListener('mouseenter', function(){
-    if(window.matchMedia('(hover: hover) and (pointer: fine)').matches) openQuery();
-  });
-
-  // Desktop: moving the pointer completely away from button + popup closes it.
-  zone.addEventListener('mouseleave', function(){
-    if(window.matchMedia('(hover: hover) and (pointer: fine)').matches) delayedClose();
-  });
-
-  // Keep the popup open while the pointer moves from the button into the
-  // upward-opening form, then close it when the pointer leaves the form.
-  popup.addEventListener('mouseenter', function(){
-    if(window.matchMedia('(hover: hover) and (pointer: fine)').matches) openQuery();
-  });
-  popup.addEventListener('mouseleave', function(){
-    if(window.matchMedia('(hover: hover) and (pointer: fine)').matches) delayedClose();
-  });
-
-  // Click/tap still toggles the popup.
-  openBtn.addEventListener('click', function(){
-    if(popup.classList.contains('is-open')) closeQuery();
-    else openQuery();
-  });
+  // Click/tap toggles the popup. Keyboard Enter/Space on the button
+  // activates the native button click behavior.
+  openBtn.addEventListener('click', openQuery);
 
   closeBtn.addEventListener('click', closeQuery);
 
@@ -1078,6 +1258,214 @@ document.addEventListener('focusin', function(event) {
   .home-brand-panel{left:2.5% !important; right:2.5% !important;}
 }
 </style>
+
+<style id="final-map-logo-spin-only">
+/* FINAL MAP LOGO SPIN — requested only. Three spins, pause, three spins, pause; repeat. */
+.home-map-logo{
+  animation:alifMapLogoCycle 6.5s linear infinite;
+  transform-style:preserve-3d;
+  backface-visibility:visible;
+  -webkit-backface-visibility:visible;
+}
+@keyframes alifMapLogoCycle{
+  0%{transform:translate(-50%,-50%) rotateY(0deg);}
+  23%{transform:translate(-50%,-50%) rotateY(1080deg);}
+  54%{transform:translate(-50%,-50%) rotateY(1080deg);}
+  77%{transform:translate(-50%,-50%) rotateY(2160deg);}
+  100%{transform:translate(-50%,-50%) rotateY(2160deg);}
+}
+</style>
+
+<script id="final-entry-video-1-5sec-script">
+(function(){
+  const overlay=document.getElementById('entryVideoOverlay');
+  const video=document.getElementById('entryVideo');
+  const press=document.getElementById('alifPressHere');
+  if(!overlay || !video || !press) return;
+
+  let alreadyPlayed=false;
+  try{ alreadyPlayed=sessionStorage.getItem('alifEntryVideoPlayed') === '1'; }catch(e){}
+  if(alreadyPlayed){ overlay.setAttribute('aria-hidden','true'); overlay.remove(); return; }
+  try{ sessionStorage.setItem('alifEntryVideoPlayed','1'); }catch(e){}
+
+  let stage=1;
+  let finished=false;
+
+  function goHome(){
+    if(finished) return;
+    finished=true;
+    window.location.href='index.html';
+  }
+
+  function showPress(){
+    press.classList.add('is-visible');
+    press.focus({preventScroll:true});
+  }
+
+  function playSecondIntro(){
+    stage=2;
+    video.pause();
+    video.src='HI.mp4';
+    video.load();
+    video.loop=false;
+    video.controls=false;
+    press.classList.remove('is-visible');
+    const p=video.play();
+    if(p && typeof p.catch==='function') p.catch(function(){});
+  }
+
+  function firstIntroEnded(){
+    if(stage!==1) return;
+    setTimeout(playSecondIntro,1500);
+  }
+
+  function secondIntroEnded(){
+    if(stage!==2) return;
+    // Keep the second intro's final frame visible and only reveal the button.
+    video.pause();
+    showPress();
+  }
+
+  function videoError(){
+    if(stage===1){
+      setTimeout(playSecondIntro,1500);
+    }else if(stage===2){
+      showPress();
+    }
+  }
+
+  video.addEventListener('ended',function(){
+    if(stage===1) firstIntroEnded();
+    else secondIntroEnded();
+  });
+  video.addEventListener('error',videoError);
+  press.addEventListener('click',goHome);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Enter' && stage===2 && press.classList.contains('is-visible')){
+      e.preventDefault();
+      goHome();
+    }
+  });
+
+  const playPromise=video.play();
+  if(playPromise && typeof playPromise.catch==='function') playPromise.catch(function(){});
+})();
+</script>
+
+
+
+<style id="orbit-hover-readable-clean">
+/* Orbit readability: hover/focus pauses the orbit, straightens only the
+   selected service, and fades the remaining services. */
+.alif-service-orbit.orbit-focus .alif-orbit-item:not(.orbit-active){
+  opacity:.16 !important;
+  filter:grayscale(.35) brightness(.82) !important;
+}
+.alif-service-orbit.orbit-focus .alif-orbit-item.orbit-active{
+  opacity:1 !important;
+  z-index:50 !important;
+}
+.alif-service-orbit .alif-orbit-card.orbit-readable{
+  animation:none !important;
+  z-index:60 !important;
+  filter:brightness(1.12) !important;
+  box-shadow:0 13px 30px rgba(11,37,69,.30),0 0 0 3px rgba(255,255,255,.38) !important;
+}
+@media(max-width:900px){
+  .alif-service-orbit.orbit-focus .alif-orbit-item:not(.orbit-active){opacity:.18 !important;}
+  .alif-service-orbit .alif-orbit-card.orbit-readable{
+    box-shadow:0 10px 24px rgba(11,37,69,.28),0 0 0 3px rgba(255,255,255,.38) !important;
+  }
+}
+</style>
+
+<style id="orbit-logo-size-preserved">
+/* Preserve the existing logo size from the supplied final ZIP. */
+.home-map-logo{width:clamp(155px,13vw,220px) !important;}
+@media(max-width:900px){.home-map-logo{width:clamp(120px,32vw,180px) !important;}}
+</style>
+
+<script id="orbit-hover-readable-clean-script">
+(function(){
+  const orbit=document.querySelector('.alif-service-orbit');
+  if(!orbit) return;
+  const cards=Array.from(orbit.querySelectorAll('.alif-orbit-card'));
+  if(!cards.length) return;
+
+  function animations(){
+    return orbit.getAnimations().filter(a=>a.animationName==='alifServiceOrbit');
+  }
+  function cardAnimations(){
+    return cards.flatMap(card=>
+      card.getAnimations().filter(a=>a.animationName==='alifServiceCardCounter')
+    );
+  }
+  function matrixRotationDegrees(element){
+    const transform=getComputedStyle(element).transform;
+    if(!transform || transform==='none') return 0;
+    const match=transform.match(/^matrix\(([-0-9.e]+),\s*([-0-9.e]+),\s*([-0-9.e]+),\s*([-0-9.e]+),/);
+    return match ? Math.atan2(parseFloat(match[2]),parseFloat(match[1]))*180/Math.PI : 0;
+  }
+  function pauseOrbit(){
+    animations().forEach(a=>a.pause());
+    cardAnimations().forEach(a=>a.pause());
+  }
+  function syncAndResume(){
+    const parent=animations()[0];
+    if(!parent) return;
+    const time=parent.currentTime;
+    cardAnimations().forEach(a=>{a.currentTime=time;});
+    parent.play();
+    cardAnimations().forEach(a=>a.play());
+  }
+  function setReadable(card){
+    const item=card.closest('.alif-orbit-item');
+    if(!item) return;
+
+    pauseOrbit();
+    orbit.classList.add('orbit-focus');
+    orbit.querySelectorAll('.alif-orbit-item').forEach(other=>{
+      other.classList.toggle('orbit-active',other===item);
+    });
+
+    const parentAngle=matrixRotationDegrees(orbit);
+    const itemAngle=matrixRotationDegrees(item);
+    card.classList.add('orbit-readable');
+    card.style.transform='translate(-50%,-50%) rotate('+(-(parentAngle+itemAngle))+'deg)';
+  }
+  function clearReadable(){
+    orbit.classList.remove('orbit-focus');
+    orbit.querySelectorAll('.alif-orbit-item').forEach(item=>item.classList.remove('orbit-active'));
+    cards.forEach(card=>{
+      card.classList.remove('orbit-readable');
+      card.style.transform='';
+    });
+    syncAndResume();
+  }
+
+  cards.forEach(card=>{
+    card.addEventListener('pointerenter',()=>setReadable(card));
+    card.addEventListener('focus',()=>setReadable(card));
+    card.addEventListener('pointerleave',event=>{
+      if(!card.matches(':focus') && !card.contains(event.relatedTarget)) clearReadable();
+    });
+    card.addEventListener('blur',()=>{
+      if(!card.matches(':hover')) clearReadable();
+    });
+  });
+
+  orbit.addEventListener('pointerleave',()=>{
+    const focused=document.activeElement;
+    if(!focused || !orbit.contains(focused)) clearReadable();
+  });
+
+  window.addEventListener('resize',()=>{
+    const active=orbit.querySelector('.alif-orbit-card.orbit-readable');
+    if(active) setReadable(active);
+  });
+})();
+</script>
+
 </body>
 </html>
 
@@ -1690,5 +2078,169 @@ document.addEventListener('focusin', function(event) {
     line-height:.95 !important;
     letter-spacing:.5px !important;
   }
+}
+</style>
+
+
+<style id="final-center-map-logo-rotating-services-only">
+/*
+  FINAL USER REQUEST ONLY:
+  - ALIF logo remains STILL in the middle of the India map.
+  - The 11 requested services rotate slowly around the fixed logo.
+  - Each service links to the existing Services page.
+  - Service labels use Times New Roman for easier reading.
+  - Each rotating service tab has its own distinct colour.
+  - No other page/content/settings are changed.
+*/
+.home-map-logo{
+  left:72.4% !important;
+  top:47.2% !important;
+  width:clamp(155px,13vw,225px) !important;
+  animation:none !important;
+  transform:translate(-50%,-50%) !important;
+  transform-style:flat !important;
+  backface-visibility:visible !important;
+  -webkit-backface-visibility:visible !important;
+  z-index:14 !important;
+  pointer-events:none !important;
+}
+
+.alif-service-orbit{
+  --orbit-radius:clamp(155px,13.5vw,195px);
+  position:absolute;
+  left:72.4%;
+  top:47.2%;
+  width:0;
+  height:0;
+  z-index:12;
+  pointer-events:none;
+  animation:alifServiceOrbit 48s linear infinite;
+  transform-origin:0 0;
+}
+.alif-orbit-item{
+  position:absolute;
+  left:0;
+  top:0;
+  width:0;
+  height:0;
+  transform:rotate(var(--orbit-angle)) translateY(calc(-1 * var(--orbit-radius)));
+  transform-origin:0 0;
+  pointer-events:auto;
+}
+.alif-orbit-card{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  width:clamp(132px,10.8vw,158px);
+  min-height:48px;
+  box-sizing:border-box;
+  padding:8px 9px;
+  border:1.5px solid rgba(255,255,255,.88);
+  border-radius:16px;
+  color:#ffffff;
+  text-decoration:none;
+  text-align:center;
+  box-shadow:0 7px 18px rgba(11,37,69,.18),0 0 0 2px rgba(255,255,255,.25);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  transform:translate(-50%,-50%);
+  animation:alifServiceCardCounter 48s linear infinite;
+  transition:filter .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.alif-orbit-card:hover,
+.alif-orbit-card:focus-visible{
+  filter:brightness(1.08);
+  box-shadow:0 12px 26px rgba(11,37,69,.28),0 0 0 3px rgba(255,255,255,.35);
+  outline:none;
+}
+
+/* Distinct, high-contrast service colours — one colour per tab. */
+.alif-orbit-item:nth-child(1) .alif-orbit-card{background:#0b5cab;}
+.alif-orbit-item:nth-child(2) .alif-orbit-card{background:#0b8f87;}
+.alif-orbit-item:nth-child(3) .alif-orbit-card{background:#d97706;}
+.alif-orbit-item:nth-child(4) .alif-orbit-card{background:#7c3aed;}
+.alif-orbit-item:nth-child(5) .alif-orbit-card{background:#b45309;}
+.alif-orbit-item:nth-child(6) .alif-orbit-card{background:#047857;}
+.alif-orbit-item:nth-child(7) .alif-orbit-card{background:#be185d;}
+.alif-orbit-item:nth-child(8) .alif-orbit-card{background:#2563eb;}
+.alif-orbit-item:nth-child(9) .alif-orbit-card{background:#65a30d;}
+.alif-orbit-item:nth-child(10) .alif-orbit-card{background:#c2410c;}
+.alif-orbit-item:nth-child(11) .alif-orbit-card{background:#0891b2;}
+.alif-orbit-item:nth-child(12) .alif-orbit-card{background:#9333ea;}
+.alif-orbit-item:nth-child(13) .alif-orbit-card{background:#dc2626;}
+.alif-orbit-item:nth-child(14) .alif-orbit-card{background:#0f766e;}
+.alif-orbit-item:nth-child(15) .alif-orbit-card{background:#7c2d12;}
+
+.alif-orbit-dot{
+  flex:0 0 8px;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#ffffff;
+  box-shadow:0 0 0 2px rgba(255,255,255,.28);
+}
+.alif-orbit-text{
+  display:block;
+  max-width:132px;
+  font-family:"Times New Roman",Times,serif;
+  font-size:clamp(9px,1.02vw,12px);
+  line-height:1.12;
+  font-weight:700;
+  letter-spacing:.05px;
+  color:#ffffff;
+}
+
+@keyframes alifServiceOrbit{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+@keyframes alifServiceCardCounter{
+  from{transform:translate(-50%,-50%) rotate(0deg);}
+  to{transform:translate(-50%,-50%) rotate(-360deg);}
+}
+
+@media(max-width:900px){
+  .home-map-logo{
+    left:50% !important;
+    top:43% !important;
+    width:clamp(120px,31vw,180px) !important;
+  }
+  .alif-service-orbit{
+    left:50%;
+    top:43%;
+    --orbit-radius:clamp(125px,39vw,175px);
+    animation-duration:56s;
+  }
+  .alif-orbit-card{
+    animation-duration:56s;
+    width:clamp(94px,25vw,120px);
+    min-height:44px;
+    padding:6px 7px;
+    border-radius:11px;
+    gap:5px;
+  }
+  .alif-orbit-text{
+    max-width:102px;
+    font-size:clamp(8px,2.05vw,10px);
+    line-height:1.08;
+  }
+  .alif-orbit-dot{
+    width:7px;
+    height:7px;
+    flex-basis:7px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .alif-service-orbit,
+  .alif-orbit-card{
+    animation-play-state:paused !important;
+  }
+}
+
+/* Latest request: make the fixed ALIF Home-map logo slightly larger, responsively. */
+.home-map-logo { width:clamp(184px,15vw,260px) !important; }
+@media(max-width:900px) {
+  .home-map-logo { width:clamp(144px,37vw,210px) !important; }
 }
 </style>
