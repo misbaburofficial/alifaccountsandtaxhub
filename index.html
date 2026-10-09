@@ -709,6 +709,21 @@ html.alif-entry-video-first #entryVideoOverlay{
     font-size:17px;
   }
 }
+/* Hold the actual final intro frame during the requested 1.5-second transition. */
+#entryVideoOverlay .alif-intro-held-frame{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100vw;
+  width:100dvw;
+  height:100vh;
+  height:100dvh;
+  max-width:none;
+  max-height:none;
+  object-fit:fill;
+  z-index:1;
+  pointer-events:none;
+}
 /* Responsive viewport fit: adapt to changing laptop, desktop and mobile screen sizes. */
 html, body { }
 #entryVideoOverlay {
@@ -1302,21 +1317,46 @@ document.addEventListener('focusin', function(event) {
     press.focus({preventScroll:true});
   }
 
+  let heldIntroFrame=null;
+  let secondIntroTimer=null;
+  function holdLastIntroFrame(){
+    try{
+      const canvas=document.createElement('canvas');
+      canvas.className='alif-intro-held-frame';
+      canvas.setAttribute('aria-hidden','true');
+      canvas.width=video.videoWidth || 1280;
+      canvas.height=video.videoHeight || 720;
+      const ctx=canvas.getContext('2d');
+      if(!ctx) return;
+      ctx.drawImage(video,0,0,canvas.width,canvas.height);
+      overlay.appendChild(canvas);
+      heldIntroFrame=canvas;
+    }catch(e){ /* Keep the native video frame as a graceful fallback. */ }
+  }
+  function releaseHeldIntroFrame(){
+    if(heldIntroFrame){ heldIntroFrame.remove(); heldIntroFrame=null; }
+  }
   function playSecondIntro(){
+    if(stage!==1) return;
     stage=2;
     video.pause();
     video.src='HI.mp4';
-    video.load();
     video.loop=false;
     video.controls=false;
     press.classList.remove('is-visible');
+    video.load();
     const p=video.play();
     if(p && typeof p.catch==='function') p.catch(function(){});
   }
 
+  video.addEventListener('playing',function(){
+    if(stage===2) releaseHeldIntroFrame();
+  });
+
   function firstIntroEnded(){
     if(stage!==1) return;
-    setTimeout(playSecondIntro,1500);
+    holdLastIntroFrame();
+    secondIntroTimer=setTimeout(playSecondIntro,1500);
   }
 
   function secondIntroEnded(){
@@ -1328,8 +1368,11 @@ document.addEventListener('focusin', function(event) {
 
   function videoError(){
     if(stage===1){
-      setTimeout(playSecondIntro,1500);
+      holdLastIntroFrame();
+      if(secondIntroTimer) clearTimeout(secondIntroTimer);
+      secondIntroTimer=setTimeout(playSecondIntro,1500);
     }else if(stage===2){
+      releaseHeldIntroFrame();
       showPress();
     }
   }
@@ -1377,6 +1420,12 @@ document.addEventListener('focusin', function(event) {
     box-shadow:0 10px 24px rgba(11,37,69,.28),0 0 0 3px rgba(255,255,255,.38) !important;
   }
 }
+
+/* Cross-device orbit focus: freeze both rotation layers while a selected tab is straightened. */
+.alif-service-orbit.orbit-focus { animation-play-state:paused !important; }
+.alif-service-orbit.orbit-focus .alif-orbit-card { animation-play-state:paused !important; }
+.alif-service-orbit .alif-orbit-card.orbit-readable { animation:none !important; }
+
 </style>
 
 <style id="orbit-logo-size-preserved">
@@ -1392,31 +1441,73 @@ document.addEventListener('focusin', function(event) {
   const cards=Array.from(orbit.querySelectorAll('.alif-orbit-card'));
   if(!cards.length) return;
 
+  function safeAnimations(element){
+    if(!element || typeof element.getAnimations!=='function') return [];
+    try { return element.getAnimations(); } catch(e) { return []; }
+  }
   function animations(){
-    return orbit.getAnimations().filter(a=>a.animationName==='alifServiceOrbit');
+    return safeAnimations(orbit).filter(a=>a.animationName==='alifServiceOrbit');
   }
   function cardAnimations(){
-    return cards.flatMap(card=>
-      card.getAnimations().filter(a=>a.animationName==='alifServiceCardCounter')
-    );
+    const result=[];
+    cards.forEach(card=>safeAnimations(card).forEach(a=>{
+      if(a.animationName==='alifServiceCardCounter') result.push(a);
+    }));
+    return result;
   }
   function matrixRotationDegrees(element){
     const transform=getComputedStyle(element).transform;
     if(!transform || transform==='none') return 0;
-    const match=transform.match(/^matrix\(([-0-9.e]+),\s*([-0-9.e]+),\s*([-0-9.e]+),\s*([-0-9.e]+),/);
-    return match ? Math.atan2(parseFloat(match[2]),parseFloat(match[1]))*180/Math.PI : 0;
+    const match2d=transform.match(/^matrix\(([-0-9.e]+),\s*([-0-9.e]+),\s*([-0-9.e]+),\s*([-0-9.e]+),/);
+    if(match2d) return Math.atan2(parseFloat(match2d[2]),parseFloat(match2d[1]))*180/Math.PI;
+    // Mobile and some desktop renderers expose animated transforms as matrix3d().
+    const match3d=transform.match(/^matrix3d\((.+)\)$/);
+    if(match3d){
+      const values=match3d[1].split(',').map(v=>parseFloat(v.trim()));
+      if(values.length===16 && isFinite(values[0]) && isFinite(values[1])) return Math.atan2(values[1],values[0])*180/Math.PI;
+    }
+    return 0;
   }
   function pauseOrbit(){
-    animations().forEach(a=>a.pause());
-    cardAnimations().forEach(a=>a.pause());
+    orbit.style.animationPlayState='paused';
+    cards.forEach(card=>{ card.style.animationPlayState='paused'; });
+    const parent=animations()[0];
+    if(parent){
+      const timing=parent.effect && parent.effect.getTiming();
+      const duration=timing && Number(timing.duration);
+      const progress=(duration>0 && Number.isFinite(Number(parent.currentTime)))
+        ? ((Number(parent.currentTime)%duration)+duration)%duration/duration : 0;
+      cardAnimations().forEach(a=>{
+        const childTiming=a.effect && a.effect.getTiming();
+        const childDuration=childTiming && Number(childTiming.duration);
+        if(childDuration>0) a.currentTime=progress*childDuration;
+        a.pause();
+      });
+      parent.pause();
+    }else{
+      cardAnimations().forEach(a=>a.pause());
+    }
   }
   function syncAndResume(){
     const parent=animations()[0];
-    if(!parent) return;
-    const time=parent.currentTime;
-    cardAnimations().forEach(a=>{a.currentTime=time;});
+    if(!parent){
+      orbit.style.animationPlayState='';
+      cards.forEach(card=>{ card.style.animationPlayState=''; });
+      return;
+    }
+    const parentTiming=parent.effect && parent.effect.getTiming();
+    const parentDuration=parentTiming && Number(parentTiming.duration);
+    const progress=(parentDuration>0 && Number.isFinite(Number(parent.currentTime)))
+      ? ((Number(parent.currentTime)%parentDuration)+parentDuration)%parentDuration/parentDuration : 0;
+    cardAnimations().forEach(a=>{
+      const timing=a.effect && a.effect.getTiming();
+      const duration=timing && Number(timing.duration);
+      if(duration>0) a.currentTime=progress*duration;
+      a.play();
+    });
     parent.play();
-    cardAnimations().forEach(a=>a.play());
+    orbit.style.animationPlayState='';
+    cards.forEach(card=>{ card.style.animationPlayState=''; });
   }
   function setReadable(card){
     const item=card.closest('.alif-orbit-item');
@@ -2106,6 +2197,7 @@ document.addEventListener('focusin', function(event) {
 }
 
 .alif-service-orbit{
+  --orbit-radius:195px;
   --orbit-radius:clamp(155px,13.5vw,195px);
   position:absolute;
   left:72.4%;
@@ -2132,6 +2224,7 @@ document.addEventListener('focusin', function(event) {
   align-items:center;
   justify-content:center;
   gap:7px;
+  width:158px;
   width:clamp(132px,10.8vw,158px);
   min-height:48px;
   box-sizing:border-box;
@@ -2209,11 +2302,13 @@ document.addEventListener('focusin', function(event) {
   .alif-service-orbit{
     left:50%;
     top:43%;
+    --orbit-radius:155px;
     --orbit-radius:clamp(125px,39vw,175px);
     animation-duration:56s;
   }
   .alif-orbit-card{
     animation-duration:56s;
+    width:120px;
     width:clamp(94px,25vw,120px);
     min-height:44px;
     padding:6px 7px;
